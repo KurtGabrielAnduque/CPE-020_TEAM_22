@@ -1,1 +1,1 @@
-console.log("Phishing Guard extension loaded.");
+console.log("Phishing Guard running with declarativeNetRequest.");
