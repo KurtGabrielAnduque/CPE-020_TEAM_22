@@ -1,0 +1,1247 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||roblox.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||riotgames.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||playvalorant.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||cf.gameclub.ph",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||gameclub.ph",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||steampowered.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||steamcommunity.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||epicgames.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||unrealengine.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||twitch.tv",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||discord.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||discordapp.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||discord.gg",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||ieee.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 15,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||acm.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 16,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||springer.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 17,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||sciencedirect.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||arxiv.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 19,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||researchgate.net",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 20,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||jstor.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 21,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||wiley.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 22,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||tandfonline.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 23,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||ncbi.nlm.nih.gov",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 24,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||semanticscholar.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 25,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||mdpi.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 26,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||nature.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 27,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||science.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 28,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||github.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 29,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||stackoverflow.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 30,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||gitlab.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 31,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||bitbucket.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 32,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||huggingface.co",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 33,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||kaggle.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 34,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||python.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 35,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||mozilla.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 36,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||w3schools.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 37,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||geeksforgeeks.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 38,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||medium.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 39,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||dev.to",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 40,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||freecodecamp.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 41,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||oracle.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 42,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||microsoft.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 43,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||docker.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 44,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||kubernetes.io",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 45,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||reactjs.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 46,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||vuejs.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 47,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||angular.io",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 48,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||google.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 49,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||youtube.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 50,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||facebook.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 51,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||amazon.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 52,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||wikipedia.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 53,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||yahoo.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 54,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||reddit.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 55,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||netflix.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 56,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||instagram.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 57,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||linkedin.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 58,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||twitter.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 59,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||apple.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 60,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||whatsapp.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 61,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||openai.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 62,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||quora.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 63,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||ebay.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 64,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||adobe.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 65,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||cnn.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 66,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||nytimes.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 67,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||bbc.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 68,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||weather.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 69,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||paypal.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 70,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||chase.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 71,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||gmail.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 72,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||zoom.us",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 73,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||canva.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 74,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||coursera.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 75,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||udemy.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 76,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||edx.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 77,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||khanacademy.org",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 78,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||mit.edu",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 79,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||stanford.edu",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 80,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||harvard.edu",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 81,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||ucla.edu",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 82,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||canvas.instructure.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  },
+  {
+    "id": 83,
+    "priority": 1,
+    "action": {
+      "type": "allow"
+    },
+    "condition": {
+      "urlFilter": "||blackboard.com",
+      "resourceTypes": [
+        "main_frame",
+        "xmlhttprequest",
+        "websocket"
+      ]
+    }
+  }
+]
