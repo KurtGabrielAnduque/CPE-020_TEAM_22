@@ -2,164 +2,180 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Security Warning</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Warning - Site Unsafe</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background: radial-gradient(circle at center, #990000 0%, #1a0000 90%);
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden;
-            min-height: 100vh;
-        }
-        .warning-container {
-            max-width: 600px;
-            margin: 10vh auto;
-            padding: 2.5rem;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        
-        .glass-card {
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .pulse-white {
-            animation: pulse 2.5s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.08); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .hidden-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        .show-details {
-            max-height: 300px;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle, #4a0505 0%, #1a0202 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
         }
 
-        /* Stage 2: Lockdown UI - Even more intense red */
-        #lockdown-screen {
-            display: none;
-            background-color: #ff0000;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 100;
+        
+        .warning-container {
+            background: radial-gradient(circle, #3d0707 0%, #210404 100%);
+            width: 480px;
+            padding: 50px 40px;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 2rem;
             text-align: center;
         }
-        .shake {
-            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+
+        
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            margin-bottom: 30px;
+            font-size: 50px;
+            line-height: 1;
+            padding-bottom: 15px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
-        @keyframes shake {
-            10%, 90% { transform: translate3d(-1px, 0, 0); }
-            20%, 80% { transform: translate3d(2px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-            40%, 60% { transform: translate3d(4px, 0, 0); }
+
+        h1, h2 {
+            font-weight: 800;
+            font-size: 2.2rem;
+            margin: 0 0 15px 0;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #cccccc;
+            margin-bottom: 35px;
+        }
+
+        strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s;
+        }
+
+        #btn-safe, #btn-exit {
+            width: 100%;
+            padding: 16px;
+            background-color: white;
+            color: #570a0a;
+            border: none;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        #btn-safe:hover, #btn-exit:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.01);
+        }
+
+        .secondary, .link {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-top: 25px;
+            text-decoration: none;
+        }
+
+        .secondary:hover, .link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        
+        .hidden {
+            display: none !important;
+        }
+
+        
+        #notification {
+            position: fixed;
+            bottom: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: none;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        
+        #details {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            width: 100%;
+            text-align: left;
+            font-size: 0.85rem;
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
+<body>
 
-    <!-- Primary Warning Card -->
-    <div id="primary-warning" class="warning-container glass-card rounded-3xl shadow-2xl">
-        <div class="flex justify-center mb-8">
-            <div class="bg-white/10 p-5 rounded-full pulse-white border border-white/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-            </div>
-        </div>
+    <div id="primary-warning" class="warning-container">
+        <div class="icon">⚠️</div>
 
-        <h1 class="text-4xl font-black text-center mb-4 tracking-tight uppercase">Security Alert</h1>
-        <p class="text-white/90 text-center mb-10 text-lg leading-relaxed">
-            This website has been flagged as <strong>highly dangerous</strong>. Proceeding will expose your session to potential credential theft and malware.
+        <h1>SECURITY ALERT</h1>
+        
+        <p>
+            The website is blocked by Phishing Guard. The website that you are trying to redirect has been flagged as 
+            <strong id="unsafe-url-display">highly dangerous</strong>. 
+            Proceeding will expose your session to potential credential theft and malware.
         </p>
 
-        <div class="flex flex-col gap-4 items-center">
-            <button onclick="goBack()" class="w-full py-4 bg-white text-red-800 hover:bg-zinc-100 font-black text-xl rounded-xl transition-all transform active:scale-95 shadow-2xl uppercase tracking-wider">
-                Get me to safety
-            </button>
-            <button onclick="toggleDetails()" class="text-white/50 hover:text-white text-sm font-medium transition-colors">
-                Show technical threat details
-            </button>
-        </div>
+        <button id="btn-safe">Get Me To Safety</button>
+        
+        <button id="btn-details" class="secondary">
+            Show technical threat details
+        </button>
 
-        <div id="details" class="hidden-details mt-6 text-white/60 text-xs border-t border-white/10 pt-4 text-center">
-            <div class="bg-black/30 p-4 rounded-lg font-mono text-left mb-4">
-                <p class="text-red-400 font-bold mb-1">[CRITICAL] HEURISTIC_MATCH_MALWARE</p>
-                <p>The site signature matches known phishing databases. SSL Handshake contains suspicious metadata.</p>
-            </div>
-            <button onclick="triggerLockdown()" class="underline opacity-40 hover:opacity-100 transition-opacity">
-                Proceed anyway (highly unsafe)
+        <div id="details" class="hidden">
+            <p><strong>[CRITICAL]</strong> BLACKLIST_MATCH</p>
+            <p>Target: <span id="tech-url">unknown</span></p>
+            <button id="btn-lockdown" class="link">
+                I understand the risks, proceed anyway
             </button>
         </div>
     </div>
 
-    <!-- Stage 2 Lockdown Screen -->
-    <div id="lockdown-screen" class="shake">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 text-white mb-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-        </svg>
-        <h2 class="text-5xl font-black mb-6 uppercase tracking-tighter italic">STOP!</h2>
-        <p class="text-white font-bold max-w-lg text-xl mb-12">
-            YOUR BROWSER SECURITY HAS INTERCEPTED A MALICIOUS REQUEST. 
-            <br><span class="text-black bg-white px-2 mt-2 inline-block font-mono">CODE: SEV_1_THREAT</span>
-        </p>
-        <div class="flex flex-col gap-4 w-full max-w-sm">
-            <button onclick="goBack()" class="py-5 bg-black text-white font-black rounded-xl text-2xl shadow-2xl hover:scale-105 transition-transform uppercase">
-                EMERGENCY EXIT
-            </button>
-            <button onclick="finalProceed()" class="text-black/60 hover:text-black font-bold text-sm underline mt-6">
-                Ignore all protection and enter site
-            </button>
-        </div>
+    <div id="lockdown-screen" class="warning-container hidden">
+        
+        <h2>STOP!</h2>
+        <p>Final warning. This site is known to be unsafe. Proceeding will compromise your device security.</p>
+
+        <button id="btn-exit">EMERGENCY EXIT</button>
+        <button id="btn-proceed" class="link">
+            Ignore protection and visit unsafe site
+        </button>
     </div>
 
-    <div id="notification" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-white text-black font-bold px-8 py-4 rounded-full shadow-2xl opacity-0 transition-opacity pointer-events-none z-[200]">
-        REDIRECTING TO SECURE DOMAIN...
-    </div>
+    <div id="notification"></div>
 
-    <script>
-        function goBack() {
-            const notice = document.getElementById('notification');
-            notice.style.opacity = '1';
-            setTimeout(() => {
-                window.location.href = "https://www.google.com";
-            }, 1200);
-        }
-
-        function toggleDetails() {
-            document.getElementById('details').classList.toggle('show-details');
-        }
-
-        function triggerLockdown() {
-            document.getElementById('primary-warning').style.opacity = '0';
-            document.getElementById('primary-warning').style.transform = 'scale(0.85)';
-            setTimeout(() => {
-                document.getElementById('primary-warning').style.display = 'none';
-                const lockdown = document.getElementById('lockdown-screen');
-                lockdown.style.display = 'flex';
-            }, 400);
-        }
-
-        function finalProceed() {
-            const notice = document.getElementById('notification');
-            notice.innerText = "SECURITY DISABLED. PROCEEDING...";
-            notice.style.backgroundColor = "#000";
-            notice.style.color = "#fff";
-            notice.style.opacity = '1';
-        }
-    </script>
+    <script src="goaway.js"></script>
 </body>
 </html>

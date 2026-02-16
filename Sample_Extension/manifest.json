@@ -1,6 +1,6 @@
 {
   "name": "Phishing Guard",
-  "description": "Prototype phishing detection extension",
+  "description": "Prototype phishing detection extension developed by team 22 for CPE 020",
   "version": "1.0",
   "manifest_version": 3,
 
@@ -9,7 +9,9 @@
   },
 
   "permissions": [
-    "declarativeNetRequest"
+    "declarativeNetRequest",
+    "webNavigation", 
+    "tabs"
   ],
 
   "host_permissions": [
@@ -21,8 +23,16 @@
       {
         "id": "ruleset_1",
         "enabled": true,
-        "path": "rules.json"
+        "path": "new_rules.json"
       }
     ]
-  }
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": ["goaway.css"],
+      "matches": [ "<all_urls>" ]
+    }
+  ]
+  
 }
