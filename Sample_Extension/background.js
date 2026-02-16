@@ -1,0 +1,1 @@
+console.log("Phishing Guard extension loaded.");
