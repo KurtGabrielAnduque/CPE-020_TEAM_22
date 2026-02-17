@@ -74,10 +74,10 @@ function calculateRiskScore(urlStr) {
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     
-    // 1. Only run when the URL changes (and exists)
+
     if (changeInfo.url) {
         
-        // 2. Prevent loops: Don't check your own Extension pages or blank tabs
+
         if (changeInfo.url.startsWith("chrome://") || 
             changeInfo.url.includes("chrome-extension://") ||
             changeInfo.url.includes("goaway.html")) {
@@ -86,21 +86,21 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
         console.log("Analyzing:", changeInfo.url);
 
-        // 3. Run your Logic
+
         const score = calculateRiskScore(changeInfo.url);
 
         if (score > 0) {
             console.log(`[Risk Analysis] Score: ${score} | URL: ${changeInfo.url}`);
         }
 
-        // 4. Action: REDIRECT (Instead of "cancel")
+
         if (score >= 3) {
             console.log("BLOCKING MALICIOUS SITE");
             
             const warningPage = chrome.runtime.getURL("goaway.html");
             const finalUrl = warningPage + "?url=" + encodeURIComponent(changeInfo.url);
 
-            // Immediate Redirect (The MV3 alternative to blocking)
+
             chrome.tabs.update(tabId, { url: finalUrl });
         }
     }
