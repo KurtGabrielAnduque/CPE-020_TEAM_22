@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Warning - Site Unsafe</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+
+    <!-- Primary Warning Card -->
+    <div id="primary-warning" class="warning-container">
+        <div class="icon-wrapper">
+            <div class="icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+            </div>
+        </div>
+
+        <h1>Security Alert</h1>
+        <p class="description">
+            This website has been flagged as <strong>highly dangerous</strong>. Proceeding will expose your session to potential credential theft and malware.
+        </p>
+
+        <div class="btn-group">
+            <button onclick="goBack()" class="btn-primary">
+                Get me to safety
+            </button>
+            <button onclick="toggleDetails()" class="btn-text">
+                Show technical threat details
+            </button>
+        </div>
+
+        <div id="details" class="hidden-details">
+            <div class="threat-box">
+                <p class="threat-title">[CRITICAL] HEURISTIC_MATCH_MALWARE</p>
+                <p>The site signature matches known phishing databases. SSL Handshake contains suspicious metadata.</p>
+            </div>
+            <button onclick="triggerLockdown()" class="btn-unsafe">
+                Proceed anyway (highly unsafe)
+            </button>
+        </div>
+    </div>
+
+    <!-- Stage 2 Lockdown Screen -->
+    <div id="lockdown-screen" class="shake">
+        <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="margin-bottom: 2rem;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+        <h2>STOP!</h2>
+        <p class="lockdown-desc">
+            YOUR BROWSER SECURITY HAS INTERCEPTED A MALICIOUS REQUEST. 
+            <br><span class="code-badge">CODE: SEV_1_THREAT</span>
+        </p>
+        <div class="btn-group" style="width: 100%;">
+            <button onclick="goBack()" class="btn-emergency">
+                EMERGENCY EXIT
+            </button>
+            <button onclick="finalProceed()" class="btn-text" style="color: rgba(0,0,0,0.6); font-weight: 700; text-decoration: underline;">
+                Ignore all protection and enter site
+            </button>
+        </div>
+    </div>
+
+    <div id="notification">
+        REDIRECTING TO SECURE DOMAIN...
+    </div>
+</body>
+</html>
