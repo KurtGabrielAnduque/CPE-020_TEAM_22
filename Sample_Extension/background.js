@@ -44,7 +44,7 @@ function calculateRiskScore(urlStr) {
 
         
         TARGET_BRANDS.forEach(brand => {
-            if (wholeUrl.includes(brand.name)) {
+            if (hostname.includes(brand.name)) {
                 
                 if (!hostname.endsWith(brand.domain)) {
                     console.log(`Log: Brand mismatch detected! claiming ${brand.name} but on ${hostname}`);
@@ -72,28 +72,36 @@ function calculateRiskScore(urlStr) {
 }
 
 
-chrome.webRequest.onBeforeRequest.addListener(
-    (details) => {
-        if (details.type !== "main_frame") return;
-        if (details.url.startsWith("chrome-extension://")) return;
-
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    
+    // 1. Only run when the URL changes (and exists)
+    if (changeInfo.url) {
         
-        const score = calculateRiskScore(details.url);
-        
-        
-        if (score > 0) {
-            console.log(`[Analysis] URL: ${details.url} | Risk Score: ${score}`);
+        // 2. Prevent loops: Don't check your own Extension pages or blank tabs
+        if (changeInfo.url.startsWith("chrome://") || 
+            changeInfo.url.includes("chrome-extension://") ||
+            changeInfo.url.includes("goaway.html")) {
+            return;
         }
 
-        
+        console.log("Analyzing:", changeInfo.url);
+
+        // 3. Run your Logic
+        const score = calculateRiskScore(changeInfo.url);
+
+        if (score > 0) {
+            console.log(`[Risk Analysis] Score: ${score} | URL: ${changeInfo.url}`);
+        }
+
+        // 4. Action: REDIRECT (Instead of "cancel")
         if (score >= 3) {
-            console.warn("BLOCKING: High risk detected.");
+            console.log("BLOCKING MALICIOUS SITE");
             
             const warningPage = chrome.runtime.getURL("goaway.html");
-            const finalUrl = warningPage + "?url=" + encodeURIComponent(details.url);
-            
-            chrome.tabs.update(details.tabId, { url: finalUrl });
+            const finalUrl = warningPage + "?url=" + encodeURIComponent(changeInfo.url);
+
+            // Immediate Redirect (The MV3 alternative to blocking)
+            chrome.tabs.update(tabId, { url: finalUrl });
         }
-    },
-    { urls: ["<all_urls>"] }
-);
+    }
+});
