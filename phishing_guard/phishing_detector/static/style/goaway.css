@@ -1,0 +1,224 @@
+/* =========================================
+   BASE STYLES
+   ========================================= */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa; /* Softer off-white for modern feel */
+}
+
+/* =========================================
+   NAVIGATION BAR
+   ========================================= */
+.navigation-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffc145;
+    border-bottom: 2px solid #e0a800;
+}
+
+.navigation-bar a {
+    text-decoration: none;
+    color: #333;
+    padding: 20px 30px;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.navigation-bar a:hover {
+    background-color: #B8B8D1;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+}
+
+/* =========================================
+   HEADER & TITLE PAGE
+   ========================================= */
+.title-page {
+    background: linear-gradient(135deg, #B8B8D1, #5B5F97);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.title-page h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.title-page p {
+    font-weight: 400;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   UTILITIES & LOADING SPINNER
+   ========================================= */
+.hidden {
+    display: none !important;
+}
+
+#loadingState {
+    text-align: center;
+    margin: 60px 0;
+    font-size: 1.2em;
+    color: #5B5F97;
+    font-weight: bold;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #5B5F97;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* =========================================
+   CHART & RESULTS SECTION
+   ========================================= */
+.result-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-container.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.result {
+    margin: 50px 0;
+    width: 100%;
+    max-width: 900px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.08);
+}
+
+.notif h2 {
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.graph {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* =========================================
+   CAUTION SECTION (Bottom Warning Box)
+   ========================================= */
+.caution-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 60px;
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.choices-container {
+    background-color: white;
+    padding: 50px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 900px; /* Matches the chart container width */
+    text-align: center;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.08);
+    border-top: 8px solid #FF6B6C; /* Danger stripe */
+}
+
+.warning-icon {
+    font-size: 4em;
+    color: #FF6B6C;
+    margin-bottom: 20px;
+}
+
+.choices-container h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.choices-container p {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+.choices {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.choices button {
+    outline: none;
+    border: none;
+    font-size: 1.2em;
+    padding: 15px 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-danger-custom {
+    background-color: transparent;
+    color: #FF6B6C;
+    border: 2px solid #FF6B6C !important;
+}
+
+.btn-danger-custom:hover {
+    background-color: #ffe5e5;
+}
+
+.btn-safe-custom {
+    background-color: #5B5F97;
+    color: white;
+}
+
+.btn-safe-custom:hover {
+    background-color: #464a7a;
+    transform: scale(1.05); /* Slight pop out effect on hover */
+}

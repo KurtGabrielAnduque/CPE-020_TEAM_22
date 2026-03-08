@@ -6,9 +6,11 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .feature_extractor import extract_features
 from .HybridModel.predictor import predict
+from django.shortcuts import render, redirect
 
-def home(request):
-    return render(request, 'home.html')
+
+def goaway(request):
+    return render(request, 'goaway.html')
 
 def normalize_url(url):
     url = str(url).strip()
@@ -36,8 +38,8 @@ def analyze(request):
     if request.method != "POST":
         return JsonResponse({"error": "POST only"}, status=405)
     try:
-        body       = json.loads(request.body)
-        url        = body.get("url")
+        body = json.loads(request.body)
+        url  = body.get("url")
 
         if not url:
             return JsonResponse({"error": "No URL provided"}, status=400)

@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Guard | Intercepted</title>
+    <link rel="stylesheet" href="{% static 'style/goaway.css' %}">
+    <script src="https://kit.fontawesome.com/b7fa3da7bb.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="navigation-bar">
+            <a href="#" class="brand"><i class="fa-solid fa-shield" style="color: rgb(134, 5, 5);"></i> PHISHING GUARD</a>
+            <div class="nav-links">
+                <a href="#">About Us</a>
+                <a href="#">Check our Study</a>
+                <a href="#">History</a>
+            </div>
+        </div>
+        <div class="title-page">
+            <h1><i class="fa-solid fa-hand"></i> NAVIGATION INTERCEPTED</h1>
+            <p>Our AI model analyzed your destination and determined it to be a high-risk phishing threat.</p>
+        </div>
+    </header>
+
+    <main>
+        <div id="loadingState">
+            <div class="spinner"></div>
+            <p>Finalizing AI threat analysis on the requested URL...</p>
+        </div>
+
+        <div class="result-container hidden" id="resultContainer">
+            <div class="result">
+                <div class="notif">
+                    <h2>Analysis Complete: Threat Breakdown</h2>
+                    <p id="scannedUrlDisplay" class="text-danger fw-bold"></p>
+                </div>
+                <div class="graph">
+                    <canvas id="threatDoughnutChart" width="500" height="500"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="caution-section hidden" id="cautionSection">
+            <div class="choices-container">
+                <div class="warning-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <h2>Warning: High Risk Detected!</h2>
+                <p>Would you like to proceed despite the link containing malicious content that could compromise your personal information?</p>
+                <div class="choices">
+                    <button id="Proceed" class="btn-danger-custom" onclick="proceedToDanger()">Proceed Anyway</button>
+                    <button id="TaketoSafety" class="btn-safe-custom" onclick="goBackToSafety()">Take Me to Safety</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+        <div class="container text-center text-md-start">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-primary">TEAM 22</h5>
+                    <p class="small">Your trusted team for your daily browsing. We secure your information against malicious actors.</p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-primary">MEMBERS</h5>
+                    <p><a href="#" class="text-white text-decoration-none small">Kurt Gabriel Anduque</a></p>
+                    <p><a href="#" class="text-white text-decoration-none small">Kyle Franz Rodriguez</a></p>
+                    <p><a href="#" class="text-white text-decoration-none small">John Patrick Fernandez</a></p>
+                    <p><a href="#" class="text-white text-decoration-none small">Ma. Kassandra Nicole Santos</a></p>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p class="small">Copyright © 2026 All rights reserved by:
+                        <a href="#" class="text-primary text-decoration-none"><strong>TEAM 22 Methods of Research</strong></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const urlParams  = new URLSearchParams(window.location.search);
+        const blockedUrl = urlParams.get('url') || "Unknown Suspicious Link";
+        const EXTENSION_ID = "clahdoiakneelebecehohoijnjgnpomh";
+
+        document.getElementById('scannedUrlDisplay').innerText =
+            `Intercepted Target: ${blockedUrl}`;
+
+        async function analyzeUrl() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/analyze/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: blockedUrl })
+                });
+                const data = await response.json();
+                return data;
+            } catch (err) {
+                console.error("Backend error:", err);
+                return { is_phishing: true, confidence: 0.9 };
+            }
+        }
+
+        function buildChart(confidence) {
+            const riskPercent = Math.round(confidence * 100);
+            const safePercent = 100 - riskPercent;
+
+            const threatData = {
+                labels: ['Phishing Risk', 'Safe'],
+                datasets: [{
+                    data: [riskPercent, safePercent],
+                    backgroundColor: ['#FF6B6C', '#4CAF50'],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }],
+            };
+
+            const centerTextPlugin = {
+                id: 'centerText',
+                beforeDraw: function(chart) {
+                    const width  = chart.width;
+                    const height = chart.height;
+                    const ctx    = chart.ctx;
+
+                    ctx.restore();
+
+                    const fontSize = (height / 120).toFixed(2);
+                    ctx.font         = "bold " + fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+                    ctx.fillStyle    = "#FF6B6C";
+
+                    const text  = riskPercent + "%";
+                    const textX = Math.round((width - ctx.measureText(text).width) / 2);
+                    const textY = height / 2;
+                    ctx.fillText(text, textX, textY);
+
+                    const subFontSize = (height / 350).toFixed(2);
+                    ctx.font      = "bold " + subFontSize + "em sans-serif";
+                    ctx.fillStyle = "#5B5F97";
+
+                    const subText  = "Risk Score";
+                    const subTextX = Math.round((width - ctx.measureText(subText).width) / 2);
+                    ctx.fillText(subText, subTextX, textY + 40);
+
+                    ctx.save();
+                }
+            };
+
+            const config = {
+                type: 'doughnut',
+                data: threatData,
+                options: {
+                    plugins: { legend: { position: 'bottom' } },
+                    cutout: '75%',
+                    animation: {
+                        animateScale:  false,
+                        animateRotate: true
+                    }
+                },
+                plugins: [centerTextPlugin]
+            };
+
+            const chartCtx = document.getElementById('threatDoughnutChart').getContext('2d');
+            new Chart(chartCtx, config);
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            const result     = await analyzeUrl();
+            const confidence = result.confidence || 0.9;
+
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+            buildChart(confidence);
+            document.getElementById('cautionSection').classList.remove('hidden');
+            window.scrollBy({ top: 300, behavior: 'smooth' });
+        });
+
+        function getBaseUrl(url) {
+            try {
+                const u = new URL(url);
+                return u.origin + u.pathname;
+            } catch (_) {
+                return url;
+            }
+        }
+        // ── Proceed Anyway ──────────────────────────────────
+        // chrome.runtime.sendMessage won't work from Django page
+        // so we redirect to Django's proceed/ endpoint instead
+        function proceedToDanger() {
+            if (!blockedUrl || blockedUrl === "Unknown Suspicious Link") {
+                alert("No URL to proceed to.");
+                return;
+            }
+
+            const decodedUrl = decodeURIComponent(blockedUrl);
+            const baseUrl    = getBaseUrl(decodedUrl);  // ← store base URL
+
+            chrome.runtime.sendMessage(
+                EXTENSION_ID,
+                { action: "ALLOW_SITE", url: baseUrl },  // ← send base URL
+                (response) => {
+                    console.log("Allowlisted:", response);
+                    window.location.href = decodedUrl;    // ← navigate to full URL
+                }
+            );
+        }
+    </script>
+</body>
+</html>
