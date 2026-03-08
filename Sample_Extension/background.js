@@ -148,37 +148,97 @@ function calculateRiskScore(urlStr) {
     return { score, reasons };
 }
 
+// ─── DJANGO ML CHECK (MEDIUM SCORE LAYER) ────────────────────────────────────
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    
-    // 1. Only run when the URL changes (and exists)
-    if (changeInfo.url) {
-        
-        // 2. Prevent loops: Don't check your own Extension pages or blank tabs
-        if (changeInfo.url.startsWith("chrome://") || 
-            changeInfo.url.includes("chrome-extension://") ||
-            changeInfo.url.includes("goaway.html")) {
+async function checkWithDjango(url) {
+    try {
+        const response = await fetch(DJANGO_API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ url })
+        });
+
+        if (!response.ok) throw new Error("Django API error: " + response.status);
+
+        const data = await response.json();
+        // Expected response from Django: { is_phishing: true/false, confidence: 0.0-1.0 }
+        console.log("Django ML verdict:", data);
+        return data;
+
+    } catch (e) {
+        // If backend is unreachable, fail safe — don't block
+        console.warn("Django ML check failed, failing safe:", e.message);
+        return { is_phishing: false, confidence: 0 };
+    }
+}
+
+// ─── REDIRECT TO WARNING PAGE ─────────────────────────────────────────────────
+
+function blockSite(tabId, targetUrl) {
+    const warningPage = chrome.runtime.getURL("goaway.html");
+    const finalUrl = warningPage + "?url=" + encodeURIComponent(targetUrl);
+    chrome.tabs.update(tabId, { url: finalUrl });
+}
+
+
+
+
+// ─── MAIN LISTENER ────────────────────────────────────────────────────────────
+
+chrome.webNavigation.onErrorOccurred.addListener((details) => {
+    if (details.error === "net::ERR_BLOCKED_BY_CLIENT") {
+        console.log("Blocked by PhishTank ruleset:", details.url);
+        blockSite(details.tabId, details.url);
+    }
+});
+
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+    if (!changeInfo.url) return;
+
+    const url = changeInfo.url;
+
+    // Ignore internal pages
+    if (url.startsWith("chrome://") || url.includes("chrome-extension://") || url.includes("goaway.html")) return;
+
+    // Check session allowlist
+    if (await isAllowlisted(url)) {
+        console.log("Allowlisted, skipping:", url);
+        return;
+    }
+
+    // Check safelist
+    try {
+        const hostname = new URL(url).hostname.toLowerCase();
+        if (SAFELIST.has(hostname)) {
+            console.log("Safelisted domain, skipping:", hostname);
             return;
         }
+    } catch (_) { return; }
 
-        console.log("Analyzing:", changeInfo.url);
+    // Run heuristics
+    const { score, reasons } = calculateRiskScore(url);
 
-        // 3. Run your Logic
-        const score = calculateRiskScore(changeInfo.url);
+    if (score > 0) {
+        console.log(`[Heuristics] Score: ${score} | Reasons:`, reasons);
+    }
 
-        if (score > 0) {
-            console.log(`[Risk Analysis] Score: ${score} | URL: ${changeInfo.url}`);
-        }
+    // Layer 1: High score — block immediately
+    if (score >= SCORE_BLOCK) {
+        console.log("HIGH SCORE — Blocking immediately:", url);
+        blockSite(tabId, url);
+        return;
+    }
 
-        // 4. Action: REDIRECT (Instead of "cancel")
-        if (score >= 3) {
-            console.log("BLOCKING MALICIOUS SITE");
-            
-            const warningPage = chrome.runtime.getURL("goaway.html");
-            const finalUrl = warningPage + "?url=" + encodeURIComponent(changeInfo.url);
+    // Layer 2: Medium score — consult Django ML backend
+    if (score >= SCORE_MEDIUM) {
+        console.log("MEDIUM SCORE — Sending to Django for ML verdict:", url);
+        const verdict = await checkWithDjango(url);
 
-            // Immediate Redirect (The MV3 alternative to blocking)
-            chrome.tabs.update(tabId, { url: finalUrl });
+        if (verdict.is_phishing) {
+            console.log(`ML CONFIRMED — Blocking (confidence: ${verdict.confidence}):`, url);
+            blockSite(tabId, url);
+        } else {
+            console.log(`ML CLEARED — Allowing (confidence: ${verdict.confidence}):`, url);
         }
         return;
     }
