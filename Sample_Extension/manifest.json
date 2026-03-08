@@ -12,7 +12,8 @@
     "declarativeNetRequest",
     "webNavigation", 
     "tabs",
-    "webRequest"
+    "webRequest",
+    "storage"
   ],
 
   "host_permissions": [
@@ -31,7 +32,7 @@
 
   "web_accessible_resources": [
     {
-      "resources": ["goaway.css"],
+      "resources": ["goaway.html", "goaway.js", "goaway.css"],
       "matches": [ "<all_urls>" ]
     }
   ]

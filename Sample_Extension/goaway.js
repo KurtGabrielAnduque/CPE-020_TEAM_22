@@ -6,6 +6,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const unsafeDisplay = document.getElementById("unsafe-url-display");
     const techUrl = document.getElementById("tech-url");
 
+    // ── Populate the URL displays ──────────────────────────────────────
+    if (targetUrl) {
+        const decoded = decodeURIComponent(targetUrl);
+        unsafeDisplay.textContent = decoded;
+        techUrl.textContent = decoded;
+    } else {
+        unsafeDisplay.textContent = "unknown";
+        techUrl.textContent = "unknown";
+    }
+    // ──────────────────────────────────────────────────────────────────
 
     document.getElementById("btn-safe").addEventListener("click", goBack);
     document.getElementById("btn-exit").addEventListener("click", goBack);
@@ -22,16 +32,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btn-proceed").addEventListener("click", () => {
         if (!targetUrl) return;
         showNotice("SECURITY DISABLED. PROCEEDING...");
-        setTimeout(() => {
-            location.href = decodeURIComponent(targetUrl);
-        }, 1500);
+
+        const decodedUrl = decodeURIComponent(targetUrl);
+
+        chrome.runtime.sendMessage({ action: "ALLOW_SITE", url: decodedUrl }, () => {
+            setTimeout(() => {
+                location.href = decodedUrl;
+            }, 1500);
+        });
     });
 
     function goBack() {
         showNotice("Returning to safety...");
         setTimeout(() => {
-            if (history.length > 1) history.back();
-            else location.href = "https://www.google.com";
+            location.replace("https://www.google.com");
         }, 800);
     }
 

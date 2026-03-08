@@ -1,3 +1,4 @@
+
 [
   {
     "id": 1,
@@ -1248,10 +1249,7 @@
     "id": 84,
     "priority": 1,
     "action": {
-      "type": "redirect",
-      "redirect": {
-        "extensionPath": "/goaway.html?url={url}"
-      }
+      "type": "block"
     },
     "condition": {
       "urlFilter": "allegrolokalnie.pl-423232.sbs",
