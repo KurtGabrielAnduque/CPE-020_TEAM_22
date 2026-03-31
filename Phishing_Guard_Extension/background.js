@@ -2,7 +2,7 @@
 
     // ─── CONFIGURATION ───────────────────────────────────────────────────────────
 
-    const SUSPICIOUS_TLDS = [".html", ".id", ".is", ".ua", ".ro", ".fr", ".zip", ".si", ".at", ".il", ".store", ".exe", ".eu", ".in", ".au", ".gif", ".be", ".fi", ".sk", ".info", ".es", ".tk", ".ru", ".rar", ".de", ".pl", ".cz", ".txt", ".ch", ".nl", ".mk", ".work", ".top", ".cl", ".link", ".men", ".date", ".gq", ".ln", ".reveiw", '.io', '.dev', '.click'];
+    const SUSPICIOUS_TLDS = [".html", ".id", ".is", ".ua", ".ro", ".fr", ".zip", ".si", ".at", ".il", ".store", ".exe", ".eu", ".in", ".au", ".gif", ".be", ".fi", ".sk", ".info", ".es", ".tk", ".ru", ".rar", ".de", ".pl", ".cz", ".txt", ".ch", ".nl", ".mk", ".work", ".top", ".cl", ".link", ".men", ".date", ".gq", ".ln", ".reveiw", '.io', '.dev', '.click', '.xyz'];
 
     const TARGET_BRANDS = [
         { name: "paypal", domain: "paypal.com" },
@@ -248,6 +248,7 @@ function blockSite(tabId, targetUrl) {
         // Layer 1: High score — block immediately
         if (score >= SCORE_BLOCK) {
             console.log(`Score: ${score}`);
+            console.log("Reasons:", reasons);
             console.log("HIGH SCORE — Blocking immediately:", url);
             blockSiteLocal(tabId, url);  // ← extension goaway.html
             return;
@@ -256,6 +257,7 @@ function blockSite(tabId, targetUrl) {
         // Layer 2: Medium score — consult Django ML backend
         if (score >= 2) {
             console.log(`Score: ${score}`);
+            console.log("Reasons:", reasons);
             console.log("MEDIUM SCORE — Sending to Django:", url);
             const verdict = await checkWithDjango(url);
 
