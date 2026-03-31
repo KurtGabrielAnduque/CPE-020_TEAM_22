@@ -2,7 +2,7 @@
 
     // ─── CONFIGURATION ───────────────────────────────────────────────────────────
 
-    const SUSPICIOUS_TLDS = ['.zip', '.xyz', '.top', '.gq', '.tk', '.ml', '.cf', '.work'];
+    const SUSPICIOUS_TLDS = [".html", ".id", ".is", ".ua", ".ro", ".fr", ".zip", ".si", ".at", ".il", ".store", ".exe", ".eu", ".in", ".au", ".gif", ".be", ".fi", ".sk", ".info", ".es", ".tk", ".ru", ".rar", ".de", ".pl", ".cz", ".txt", ".ch", ".nl", ".mk", ".work", ".top", ".cl", ".link", ".men", ".date", ".gq", ".ln", ".reveiw", '.io', '.dev', '.click'];
 
     const TARGET_BRANDS = [
         { name: "paypal", domain: "paypal.com" },
@@ -148,7 +148,7 @@
             // Check 7: Excessive hyphens (common in phishing domains)
             const hyphenCount = (hostname.match(/-/g) || []).length;
             if (hyphenCount >= 3) {
-                score += 1;
+                score += 2;
                 reasons.push("Excessive hyphens: " + hyphenCount);
             }
 
@@ -189,8 +189,7 @@
         }
     }
 
-    // ─── REDIRECT TO WARNING PAGE ─────────────────────────────────────────────────
-    
+// ─── REDIRECT TO WARNING PAGE ─────────────────────────────────────────────────
 // Layer 1: Blocked by heuristics → extension page (no backend needed)
 function blockSiteLocal(tabId, targetUrl) {
     const warningPage = chrome.runtime.getURL("goaway.html");
@@ -203,7 +202,11 @@ function blockSiteDjango(tabId, targetUrl) {
     const finalUrl = `http://127.0.0.1:8000/goaway/?url=${encodeURIComponent(targetUrl)}`;
     chrome.tabs.update(tabId, { url: finalUrl });
 }
-
+function blockSite(tabId, targetUrl) {
+    const warningPage = chrome.runtime.getURL("goaway.html");
+    const finalUrl = warningPage + "?url=" + encodeURIComponent(targetUrl);
+    chrome.tabs.update(tabId, { url: finalUrl });
+}
 
     // ─── MAIN LISTENER ────────────────────────────────────────────────────────────
 
