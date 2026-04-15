@@ -209,6 +209,31 @@
                 }
             );
         }
+
+
+        function goBackToSafety() {
+            // Change button text to show it's working
+            const btn = document.getElementById("TaketoSafety");
+            btn.innerText = "Returning...";
+            btn.disabled = true;
+            document.getElementById("Proceed").disabled = true;
+
+            setTimeout(() => {
+                // Same logic as our local extension page:
+                // If there's enough history, jump back 2 steps to skip the blocked URL
+                if (window.history.length > 2) {
+                    window.history.go(-2);
+                } else {
+                    // Otherwise, try to close the dangerous tab
+                    window.close();
+                    
+                    // Fallback to Google if the browser blocks window.close()
+                    setTimeout(() => {
+                        window.location.replace("https://www.google.com");
+                    }, 300);
+                }
+            }, 500);
+        }
     </script>
 </body>
 </html>

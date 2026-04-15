@@ -143,8 +143,9 @@
         <h1>SECURITY ALERT</h1>
         
         <p>
-            The website is blocked by Phishing Guard. The website that you are trying to redirect has been flagged as 
-            <strong >highly dangerous</strong>. 
+            The website is blocked by Phishing Guard. The URL <br>
+            <strong id="unsafe-url-display" style="color: #ff6b6b; word-break: break-all;"></strong> <br>
+            has been flagged as <strong>highly dangerous</strong>. 
             Proceeding will expose your session to potential credential theft and malware.
         </p>
 
@@ -155,7 +156,7 @@
         </button>
 
         <div id="details" class="hidden">
-            <p><strong>[CRITICAL]</strong> BLACKLIST_MATCH</p>
+            <p><strong>[CRITICAL]</strong> <span id="threat-type">UNKNOWN_THREAT</span></p>
             <p>Target: <span id="tech-url">unknown</span></p>
             <button id="btn-lockdown" class="link">
                 I understand the risks, proceed anyway

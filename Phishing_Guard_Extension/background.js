@@ -2,7 +2,11 @@
 
     // ─── CONFIGURATION ───────────────────────────────────────────────────────────
 
-    const SUSPICIOUS_TLDS = [".html", ".id", ".is", ".ua", ".ro", ".fr", ".zip", ".si", ".at", ".il", ".store", ".exe", ".eu", ".in", ".au", ".gif", ".be", ".fi", ".sk", ".info", ".es", ".tk", ".ru", ".rar", ".de", ".pl", ".cz", ".txt", ".ch", ".nl", ".mk", ".work", ".top", ".cl", ".link", ".men", ".date", ".gq", ".ln", ".reveiw", '.io', '.dev', '.click', '.xyz'];
+    const SUSPICIOUS_TLDS = [".html", ".id", ".is", ".ua", ".ro", ".fr", ".zip", ".si", ".at", 
+                             ".il", ".store", ".exe", ".eu", ".in", ".au", ".gif", ".be", ".fi", ".sk", 
+                             ".info", ".es", ".tk", ".ru", ".rar", ".de", ".pl", ".cz", ".txt", ".ch", ".nl", 
+                             ".mk", ".work", ".top", ".cl", ".link", ".men", ".date", ".gq", ".ln", ".reveiw", 
+                             '.io', '.dev', '.click', '.xyz'];
 
     const TARGET_BRANDS = [
         { name: "paypal", domain: "paypal.com" },
@@ -191,9 +195,9 @@
 
 // ─── REDIRECT TO WARNING PAGE ─────────────────────────────────────────────────
 // Layer 1: Blocked by heuristics → extension page (no backend needed)
-function blockSiteLocal(tabId, targetUrl) {
+function blockSiteLocal(tabId, targetUrl, threatType) {
     const warningPage = chrome.runtime.getURL("goaway.html");
-    const finalUrl    = warningPage + "?url=" + encodeURIComponent(targetUrl);
+    const finalUrl = warningPage + "?url=" + encodeURIComponent(targetUrl) + "&type=" + encodeURIComponent(threatType);
     chrome.tabs.update(tabId, { url: finalUrl });
 }
 
@@ -213,7 +217,8 @@ function blockSite(tabId, targetUrl) {
     chrome.webNavigation.onErrorOccurred.addListener((details) => {
         if (details.error === "net::ERR_BLOCKED_BY_CLIENT") {
             console.log("Blocked by PhishTank ruleset:", details.url);
-            blockSite(details.tabId, details.url);
+            // Pass "BLACKLIST_MATCH" as the third parameter
+            blockSiteLocal(details.tabId, details.url, "BLACKLIST_MATCH");
         }
     });
 
@@ -250,7 +255,8 @@ function blockSite(tabId, targetUrl) {
             console.log(`Score: ${score}`);
             console.log("Reasons:", reasons);
             console.log("HIGH SCORE — Blocking immediately:", url);
-            blockSiteLocal(tabId, url);  // ← extension goaway.html
+            // Pass "HEURISTIC_DETECTION" as the third parameter
+            blockSiteLocal(tabId, url, "HEURISTIC_DETECTION");  
             return;
         }
 
